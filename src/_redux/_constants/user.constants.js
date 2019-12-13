@@ -1,0 +1,6 @@
+export const userConstants = {
+    USERS_GET_ALL: 'USERS_GET_ALL',
+    USER_ADD_QUESTION: 'USER_ADD_QUESTION',
+    USER_ADD_ANSWER: 'USER_ADD_ANSWER',
+    USER_SET_AUTH: 'USER_SET_AUTH',
+};

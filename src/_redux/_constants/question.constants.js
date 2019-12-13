@@ -1,0 +1,5 @@
+export const questionConstants = {
+    QUESTIONS_GET_ALL: 'QUESTIONS_GET_ALL',
+    QUESTION_ADD: 'QUESTION_ADD',
+    QUESTION_ADD_ANSWER: 'QUESTION_ADD_ANSWER',
+};
