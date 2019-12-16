@@ -1,6 +1,6 @@
 import { userConstants } from './../_constants';
 import * as api from './../../utils/api';
-import * as questions from './../_actions/question';
+import * as questions from './../_actions/questions';
 
 export function getAllUsers(users) {
     return {
@@ -9,10 +9,10 @@ export function getAllUsers(users) {
     }
 }
 
-export function addQuestion({ ID, author }) {
+export function addQuestion({id, author}) {
     return {
         type: userConstants.USER_ADD_QUESTION,
-        ID,
+        id,
         author,
     }
 }
@@ -32,9 +32,5 @@ export function handleSaveAnswer(authUser, qid, answer) {
         dispatch(questions.addAnswer(authUser, qid, answer));
 
         return api.saveAnswer(authUser, qid, answer);
-
-        // return saveQuestionAnswer(authUser, qid, answer).catch(e => {
-        //     console.warn('Error in handleSaveQuestionAnswer:', e);
-        // });
     };
 }

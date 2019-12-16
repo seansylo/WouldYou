@@ -1,5 +1,5 @@
 import { questionConstants } from './../_constants';
-import * as user from './../_actions/user';
+import * as user from './../_actions/users';
 import * as api from './../../utils/api';
 
 export function getAllQuestions(questions) {

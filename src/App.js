@@ -1,26 +1,36 @@
 import React from 'react';
-import logo from './logo.svg';
+import { BrowserRouter } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { initDataLoad } from './_redux/_actions/common';
+import Login from './Pages/Login';
+import { Container } from 'react-bootstrap';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends React.Component {
+    componentDidMount() {
+        this.props.initDataLoad();
+    }
+
+    render() {
+        const { authUser } = this.props;
+        return (
+            <BrowserRouter>
+                <Container>
+                    { authUser !== null ? (
+                        `Hello, ${this.props.authUser}`
+                    ) : (
+                        <Login />
+                    )}
+                </Container>
+            </BrowserRouter>    
+        );
+    }
 }
 
-export default App;
+function mapStateToProps({authUser}){
+    return {
+        authUser,
+    }
+}
+
+export default connect(mapStateToProps, { initDataLoad })(App);

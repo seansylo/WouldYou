@@ -1,6 +1,6 @@
 import * as api from './../../utils/api';
-import * as user from './user';
-import * as question from './question';
+import * as user from './users';
+import * as question from './questions';
 
 export function initDataLoad() {
     return (dispatch) => {
