@@ -3,6 +3,7 @@ import { BrowserRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { initDataLoad } from './_redux/_actions/common';
 import Login from './Pages/Login';
+import MainNav from './Components/Nav';
 import { Container } from 'react-bootstrap';
 import './App.css';
 
@@ -17,7 +18,7 @@ class App extends React.Component {
             <BrowserRouter>
                 <Container>
                     { authUser !== null ? (
-                        `Hello, ${this.props.authUser}`
+                        <MainNav authUser={authUser}></MainNav>
                     ) : (
                         <Login />
                     )}
@@ -27,10 +28,8 @@ class App extends React.Component {
     }
 }
 
-function mapStateToProps({authUser}){
-    return {
-        authUser,
-    }
-}
+const mapStateToProps = (state) => ({
+    authUser: state.authUser,
+});
 
 export default connect(mapStateToProps, { initDataLoad })(App);

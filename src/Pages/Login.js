@@ -1,9 +1,13 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { getAllUsers } from './../_redux/_actions/users';
-import { Row, Col } from 'react-bootstrap';
+import { setAuthUser } from './../_redux/_actions/authUser';
+import { Row, Col, ListGroup } from 'react-bootstrap';
 
 class Login extends React.Component {
+    handleUser = (id) => {
+        this.props.setAuthUser(id);
+    }
 
     render() {
         let { users } = this.props;
@@ -14,9 +18,17 @@ class Login extends React.Component {
                         <div className="login-container">
                             <h2 className="login-heading">Would you Rather...?</h2>
                             <p>
-                                A game of would you this or that...?<br/>
-                                Please login to continue.
+                                Choose User.
                             </p>
+                            <ListGroup>
+                                {Object.keys(users).map((user, idx) => {
+                                    return ( 
+                                        <ListGroup.Item key={idx} action onClick={() => this.handleUser(users[user].id)}>
+                                            { users[user].name }
+                                        </ListGroup.Item>
+                                    );
+                                })}
+                            </ListGroup>
                         </div>
                     </Col>
                 </Row>
@@ -29,4 +41,4 @@ const mapStateToProps = (state) => ({
     users: state.users
 });
 
-export default connect(mapStateToProps, { getAllUsers })(Login);
+export default connect(mapStateToProps, { getAllUsers, setAuthUser })(Login);
