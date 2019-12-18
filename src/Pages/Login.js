@@ -18,7 +18,7 @@ class Login extends React.Component {
                         <div className="login-container">
                             <h2 className="login-heading">Would you Rather...?</h2>
                             <p>
-                                Choose User.
+                                Who are you?
                             </p>
                             <ListGroup>
                                 {Object.keys(users).map((user, idx) => {
