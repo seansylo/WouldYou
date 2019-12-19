@@ -13,6 +13,10 @@ class App extends React.Component {
         this.props.initDataLoad();
     }
 
+    componentDidUpdate() {
+        this.props.initDataLoad();
+    }
+
     render() {
         const { authUser } = this.props;
         return (

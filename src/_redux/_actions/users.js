@@ -30,7 +30,7 @@ export function handleSaveAnswer(authUser, qid, answer) {
     return (dispatch) => {
         dispatch(addAnwser(authUser, qid, answer));
         dispatch(questions.addAnswer(authUser, qid, answer));
-
+        
         return api.saveAnswer(authUser, qid, answer);
     };
 }

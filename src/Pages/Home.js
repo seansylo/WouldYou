@@ -2,14 +2,14 @@ import React from 'react';
 import { Tabs, Tab } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import AskCard from './../Components/AskCard';
-import { addAnwser } from './../_redux/_actions/users';
+import { handleSaveAnswer } from './../_redux/_actions/users';
 
 class Home extends React.Component {
     state = {
         value: '',
     };
 
-    handleClickAnswer = (e) => {
+    handleClickButton = (e) => {
         this.setState({ value: e.currentTarget.value });
     };
 
@@ -19,7 +19,7 @@ class Home extends React.Component {
             questionId = e.currentTarget.getAttribute('data-id');
         if (this.state.value !== '') {
             this.props.dispatch(
-                addAnwser(
+                handleSaveAnswer(
                     authUser,
                     questionId,
                     this.state.value,
@@ -30,7 +30,7 @@ class Home extends React.Component {
 
     render() {
         let { userQuestions, questions, users, authUser } = this.props,
-            handleClickAnswer = this.handleClickAnswer,
+            handleClickButton = this.handleClickButton,
             handleSubmit = this.handleSubmit;
 
         return (
@@ -41,7 +41,7 @@ class Home extends React.Component {
                         questionType="unanswered"
                         questions={questions}
                         handleSubmit={handleSubmit}
-                        handleClickAnswer={handleClickAnswer}
+                        handleClickButton={handleClickButton}
                         users={users}
                         authUser={authUser}
                     />

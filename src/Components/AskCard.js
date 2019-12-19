@@ -3,13 +3,14 @@ import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 class AskCard extends React.Component {
+
     render() {
         let {
             questionsByType,
             questionType,
             questions,
             handleSubmit,
-            handleClickAnswer,
+            handleClickButton,
             users,
             authUser,
         } = this.props;
@@ -18,7 +19,11 @@ class AskCard extends React.Component {
             <Row key={questions[question].id} className="userQuestion">
                 <Col>
                     <Row>
-                        <Col className="homeUserName">   
+                        <Col className="homeUserName">
+                            <img
+                                src={users[authUser].avatarURL ||'https://placeimg.com/72/72/any'}
+                                alt="user icon"
+                            />
                             <h5>{`${users[questions[question].author].name} is asking...`}</h5>
                         </Col>
                     </Row>
@@ -28,14 +33,6 @@ class AskCard extends React.Component {
                             {questionType === 'answered' && (
                             <Row>
                                 <Col>
-                                    <Row>
-                                        <Col>
-                                            <img
-                                                src={users[authUser].avatarURL ||'https://placeimg.com/72/72/any'}
-                                                alt="user icon"
-                                            />
-                                        </Col>
-                                    </Row>
                                     <Row>
                                         <Col sm={5}>
                                             {questions[question]['optionOne'].text}
@@ -67,7 +64,7 @@ class AskCard extends React.Component {
                                                     'optionOne'
                                                 ].text
                                             }
-                                            onClick={(e) => handleClickAnswer(e)}
+                                            onClick={(e) => handleClickButton(e)}
                                         >
                                             {questions[question]['optionOne'].text}
                                         </Button>
@@ -80,7 +77,7 @@ class AskCard extends React.Component {
                                                     'optionTwo'
                                                 ].text
                                             }
-                                            onClick={(e) => handleClickAnswer(e)}
+                                            onClick={(e) => handleClickButton(e)}
                                         >
                                             {questions[question]['optionTwo'].text}
                                         </Button>
