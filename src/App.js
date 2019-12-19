@@ -1,12 +1,12 @@
 import React from 'react';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { initDataLoad } from './_redux/_actions/common';
 import Login from './Pages/Login';
 import MainNav from './Components/Nav';
 import { Container } from 'react-bootstrap';
 import './App.css';
-import AddQuestion from './Pages/AddQuestion';
+import Main from './Main';
 
 class App extends React.Component {
     componentDidMount() {
@@ -16,23 +16,18 @@ class App extends React.Component {
     render() {
         const { authUser } = this.props;
         return (
-            <BrowserRouter>
+            <Router>
                 <Container>
                     { authUser !== null ? (
                         <>
                             <MainNav authUser={authUser} {...this.props}></MainNav>
-                            <Switch>
-                                <Route 
-                                    path="/add" 
-                                    render={(props) => <AddQuestion {...this.props} />} 
-                                />
-                            </Switch>
+                            <Main/>
                         </>
                     ) : (
                         <Login />
                     )}
                 </Container>
-            </BrowserRouter>    
+            </Router>    
         );
     }
 }
