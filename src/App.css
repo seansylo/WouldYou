@@ -2,7 +2,7 @@ body {
     background-color: #dee;
 }
 
-.login-container {
+.login-container, .newQContainer {
     margin-top: 50px;
     background-color: #fff;
     border: 1px solid rgba(16,32,48, .25);
@@ -17,4 +17,24 @@ body {
 .login-heading {
     text-align: center;
     line-height: 2;
+}
+
+.newQContainer > p,
+.newQContainer > h2,
+.newQContainer > h4 {
+    text-align: center;
+    line-height: 1.5;
+}
+
+.newQContainer > form {
+    text-align: center;;
+    width: 75%;
+}
+
+.btn-submit {
+    margin: 15px;
+}
+
+.navLink {
+    margin-right: 20px;
 }

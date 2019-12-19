@@ -15,9 +15,9 @@ class MainNav extends React.Component {
         return(
             <Navbar bg="light">
                 <Nav>
-                    <Link to="/">Home</Link>
-                    <Link to="/add">Add Question</Link>
-                    <Link to="/leaderboard">Leader Board</Link>
+                    <Link to="/" className="navLink">Home</Link>
+                    <Link to="/add" className="navLink">Add Question</Link>
+                    <Link to="/leaderboard" className="navLink">Leader Board</Link>
                 </Nav>
                 <Navbar.Collapse className="justify-content-end">
                     <Navbar.Text>Signed in as: <b>{users[this.props.authUser].name}</b></Navbar.Text>
