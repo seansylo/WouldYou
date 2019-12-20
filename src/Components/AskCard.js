@@ -16,11 +16,7 @@ class AskCard extends React.Component {
             authUser,
         } = this.props;
 
-
-        // let sortedQuestions = Object.keys(questionsByType).sort( (a,b) => {
-        //     return questions[a].timestamp - questions[b].timestamp
-        // });
-        console.log(questionsByType);
+        questionsByType.sort();
 
         return questionsByType.map((question) => (
             <Row key={questions[question].id} className="userQuestion">
