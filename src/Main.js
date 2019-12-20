@@ -4,6 +4,7 @@ import Home from './Pages/Home';
 import AddQuestion from './Pages/AddQuestion';
 import LeaderBoard from './Pages/LeaderBoard';
 import QuestionDetails from './Pages/QuestionDetail';
+import PageNoExist from './Pages/PageNoExist';
 
 class Main extends React.Component {
     render() {
@@ -20,6 +21,7 @@ class Main extends React.Component {
                         path="/questions/:question_id"
                         render={(props) => <QuestionDetails {...props} />}
                     />
+                    <Route render={(props) => <PageNoExist {...props} />} />
                 </Switch>
             </div>
         );

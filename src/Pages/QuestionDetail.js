@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 
 class QuestionDetails extends React.Component {
@@ -9,8 +10,12 @@ class QuestionDetails extends React.Component {
             question = questions[qid];
             
         let convertToPercent = function(option, optionOther) {
-                return (question[option].votes.length / (question[option].votes.length + question[optionOther].votes.length) );
-            };
+            return (question[option].votes.length / (question[option].votes.length + question[optionOther].votes.length) );
+        };
+
+        if(question === undefined) {
+            return <Redirect to="/404" />;
+        }
     
         return (
             <Row className="userQuestion">
@@ -45,5 +50,6 @@ class QuestionDetails extends React.Component {
 }
 const mapStateToProps = (state) => ({
     questions: state.questions,
+    authUser: state.authUser,
 });
 export default connect(mapStateToProps)(QuestionDetails);

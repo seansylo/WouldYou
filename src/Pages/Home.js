@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 import { Tabs, Tab } from 'react-bootstrap';
 import { connect } from 'react-redux';
 import AskCard from './../Components/AskCard';
@@ -7,6 +8,7 @@ import { handleSaveAnswer } from './../_redux/_actions/users';
 class Home extends React.Component {
     state = {
         value: '',
+        qid: '',
     };
 
     handleClickButton = (e) => {
@@ -25,6 +27,7 @@ class Home extends React.Component {
                     this.state.value,
                 ),
             );
+            this.setState({value: '', qid: questionId});
         }
     };
 
@@ -32,6 +35,11 @@ class Home extends React.Component {
         let { userQuestions, questions, users, authUser } = this.props,
             handleClickButton = this.handleClickButton,
             handleSubmit = this.handleSubmit;
+
+        if(this.state.qid.length > 1) {
+            let path = `/questions/${this.state.qid}`;
+            return <Redirect to={path} />
+        }
 
         return (
             <Tabs defaultActiveKey="Unanswered" id="uncontrolled-tab-example">
