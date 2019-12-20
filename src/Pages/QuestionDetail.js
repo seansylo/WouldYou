@@ -4,6 +4,12 @@ import { Redirect } from 'react-router-dom';
 import { Row, Col } from 'react-bootstrap';
 
 class QuestionDetails extends React.Component {
+    constructor() {
+        super()
+        this.opt1 = false;
+        this.opt2 = false;
+    }
+
     render() {
         let { questions } = this.props;
         const qid = this.props.match.params['question_id'],
@@ -16,6 +22,14 @@ class QuestionDetails extends React.Component {
         if(question === undefined) {
             return <Redirect to="/404" />;
         }
+
+        if(question.optionOne.votes.indexOf(this.props.authUser) >= 0) {
+            this.opt1 = true;
+            this.opt2 = false;
+        } else {
+            this.opt1 = false;
+            this.opt2 = true;
+        }
     
         return (
             <Row className="userQuestion">
@@ -26,7 +40,7 @@ class QuestionDetails extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col md={5}>{question.optionOne.text}</Col>
+                        <Col md={5}>{question.optionOne.text} {this.opt1 && <b>(Your Choice)</b>}</Col>
                         <Col md={3}>
                             Times Chosen: <b>{question.optionOne.votes.length}</b>
                         </Col>
@@ -35,7 +49,7 @@ class QuestionDetails extends React.Component {
                         </Col>
                     </Row>
                     <Row>
-                        <Col md={5}>{question.optionTwo.text}</Col>
+                        <Col md={5}>{question.optionTwo.text} {this.opt2 && <b>(Your Choice)</b>}</Col>
                         <Col md={3}>
                             Times Chosen: <b>{question.optionTwo.votes.length}</b>
                         </Col>

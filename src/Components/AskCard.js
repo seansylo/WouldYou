@@ -1,4 +1,5 @@
 import React from 'react';
+import {connect} from 'react-redux';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -14,6 +15,12 @@ class AskCard extends React.Component {
             users,
             authUser,
         } = this.props;
+
+
+        // let sortedQuestions = Object.keys(questionsByType).sort( (a,b) => {
+        //     return questions[a].timestamp - questions[b].timestamp
+        // });
+        console.log(questionsByType);
 
         return questionsByType.map((question) => (
             <Row key={questions[question].id} className="userQuestion">
@@ -93,4 +100,11 @@ class AskCard extends React.Component {
     }
 }
 
-export default AskCard;
+const mapStateToProps = (state) => ({
+    users: state.users,
+    authUser: state.authUser,
+});
+
+export default connect(mapStateToProps)(AskCard);
+
+// export default AskCard;
