@@ -20,7 +20,7 @@ class QuestionDetails extends React.Component {
         };
 
         if(question === undefined) {
-            return <Redirect to="/404" />;
+            return <Redirect to="/404" {...this.props} />;
         }
 
         if(question.optionOne.votes.indexOf(this.props.authUser) >= 0) {

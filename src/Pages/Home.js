@@ -41,11 +41,24 @@ class Home extends React.Component {
             return <Redirect to={path} />
         }
 
+        let sortedAns = [],
+            sortedUnAns = [];
+        Object.keys(questions).sort( (a,b)=>{
+            return questions[b].timestamp - questions[a].timestamp
+        }).forEach( question => {
+            if(~userQuestions['answered'].indexOf(question)){
+                sortedAns.push(question);
+            }
+            if(~userQuestions['unanswered'].indexOf(question)){
+                sortedUnAns.push(question);
+            }
+        })  
+
         return (
             <Tabs defaultActiveKey="Unanswered" id="uncontrolled-tab-example">
                 <Tab eventKey="Unanswered" title="Unanswered">
                     <AskCard
-                        questionsByType={userQuestions.unanswered}
+                        questionsByType={sortedUnAns}
                         questionType="unanswered"
                         questions={questions}
                         handleSubmit={handleSubmit}
@@ -56,7 +69,7 @@ class Home extends React.Component {
                 </Tab>
                 <Tab eventKey="Answer" title="Answered">
                     <AskCard
-                        questionsByType={userQuestions.answered}
+                        questionsByType={sortedAns}
                         questionType="answered"
                         questions={questions}
                         users={users}
